@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Drowdown menu</title>
+    <script defer>
+      function toggle_dropdown(event) {
+        const dropdown = event.target.parentElement.querySelector("ul");
+        dropdown.classList.toggle("invisible");
+      }
+    </script>
+    <style>
+      .invisible {
+        display: none;
+      }
+
+      ul {
+        display: inline;
+        position: relative;
+        left: 20px;
+        top: 5px;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+      }
+
+      div {
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <button onclick="toggle_dropdown(event)">≡</button>
+
+      <ul class="visible">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+      </ul>
+    </div>
+
+    <div>
+      <button onclick="toggle_dropdown(event)">≡</button>
+
+      <ul class="visible">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+      </ul>
+    </div>
+
+    <div>
+      <button onclick="toggle_dropdown(event)">≡</button>
+
+      <ul class="visible">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+      </ul>
+    </div>
+  </body>
+</html>
