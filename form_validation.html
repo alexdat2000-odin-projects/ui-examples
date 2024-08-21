@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Form with validation</title>
+  </head>
+
+  <script defer>
+    function init() {
+      const country_list = document.querySelector("#country");
+      const countries = ["", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua & Deps", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Rep", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Congo (Democratic Rep)", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland (Republic)", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea North", "Korea South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russian Federation", "Rwanda", "St Kitts & Nevis", "St Lucia", "Saint Vincent & the Grenadines", "Samoa", "San Marino", "Sao Tome & Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
+      for (const country of countries) {
+        const elem = document.createElement("option");
+        elem.textContent = country;
+        country_list.appendChild(elem);
+      }
+
+      const pass1 = document.querySelector("#pass1");
+      const pass2 = document.querySelector("#pass2");
+      pass2.addEventListener("input", (event) => {
+        if (pass2.value !== pass1.value) {
+          pass2.setCustomValidity("Passwords do not match!");
+        } else {
+          pass2.setCustomValidity("");
+        }
+      });
+
+      for (const obj of document.querySelectorAll("input, select")) {
+        console.log(obj);
+        obj.addEventListener("input", (event) => {
+          obj.reportValidity();
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+  <body>
+    <form>
+      <label>
+        E-mail:
+        <input type="email" name="email" required>
+      </label>
+      <br>
+      <label>
+        Country:
+        <select name="country" id="country" required>
+          <!-- Options added from json -->
+        </select>
+      </label>
+      <br>
+      <label>
+        Zip Code:
+        <input type="text" name="zip" minlength="6" maxlength="6" required>
+      </label>
+      <br>
+      <label>
+        Password:
+        <input type="password" name="pass1" id="pass1" minlength="8" required>
+      </label>
+      <br>
+      <label>
+        Repeat password:
+        <input type="password" name="pass2" id="pass2" minlength="8" required>
+      </label>
+      <br>
+      <button type="submit" value="Submit" id="submit">Submit</button>
+    </form>
+  </body>
+</html>
