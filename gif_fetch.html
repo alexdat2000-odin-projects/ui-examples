@@ -16,16 +16,12 @@
     <script>
       const inpt = document.querySelector("#val");
 
-      function getImg(query) {
-        fetch(`https://api.giphy.com/v1/gifs/translate?api_key=<KEY>&s=${query}`, {mode: 'cors'})
-                .then(function (response) {
-                  return response.json();
-                })
-                .then(function (response) {
-                  const new_img = document.createElement("img");
-                  new_img.src = response.data.images.original.url;
-                  document.querySelector("body").appendChild(new_img);
-                });
+      async function getImg(query) {
+        const responce = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=<KEY>&s=${query}`, {mode: 'cors'});
+        const picData = await responce.json();
+        const new_img = document.createElement("img");
+        new_img.src = picData.data.images.original.url;
+        document.querySelector("body").appendChild(new_img);
       }
 
       const addBtn = document.getElementById("submit");
