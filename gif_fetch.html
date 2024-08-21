@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>GIF Fetcher</title>
+  </head>
+  <body style="display: flex; flex-direction: column; width: 200px;">
+    <form>
+      <label>
+        New
+        <input type="text" id="val">
+        <button type="submit" id="submit">Add</button>
+      </label>
+    </form>
+
+    <script>
+      const inpt = document.querySelector("#val");
+
+      function getImg(query) {
+        fetch(`https://api.giphy.com/v1/gifs/translate?api_key=<KEY>&s=${query}`, {mode: 'cors'})
+                .then(function (response) {
+                  return response.json();
+                })
+                .then(function (response) {
+                  const new_img = document.createElement("img");
+                  new_img.src = response.data.images.original.url;
+                  document.querySelector("body").appendChild(new_img);
+                });
+      }
+
+      const addBtn = document.getElementById("submit");
+      addBtn.addEventListener("click", (e) => {
+        if (inpt.value === "") {
+          return false;
+        }
+        e.preventDefault();
+        getImg(inpt.value);
+      });
+
+      getImg("cat");
+    </script>
+  </body>
+</html>
